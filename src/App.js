@@ -1,24 +1,39 @@
-import logo from './logo.svg';
+// import app from './firebaseconfig';
 import './App.css';
+import NavBar  from './NavBar';
+import Boards from './Boards';
+import BoardInput from './Boards_input';
+import { useState } from 'react';
+// import { getFirestore , collection , addDoc , doc , getDoc  } from "firebase/firestore";
+// import { getStorage, ref, uploadBytes } from "firebase/storage";
+
+// import { useState } from 'react';
+
+// const DataStore = getStorage(app);
+
+
 
 function App() {
+
+    const [createBoard , setCreateBoard] = useState(false);
+    const [boardList , setBoardList] = useState([]);
+    const [isEditID , setIsEditID] = useState(null);
+ 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <div>
+    <NavBar createBoard = {createBoard} setCreateBoard = {setCreateBoard} />
+    <Boards  boardList={boardList} setBoardList ={setBoardList}  setIsEditID={setIsEditID} 
+      createBoard = {createBoard} setCreateBoard = {setCreateBoard} 
+    />
+    {
+      createBoard && (
+        <BoardInput createBoard = {createBoard} setCreateBoard={setCreateBoard} 
+          setBoardList={setBoardList}  boardList = {boardList}  isEditID={isEditID}
+          setIsEditID = {setIsEditID}
+        />
+      )
+    }
+  </div> 
   );
 }
 

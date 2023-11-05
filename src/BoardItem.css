@@ -1,0 +1,45 @@
+.ItemDiv{
+    height: 3.5rem;
+    max-width: 15rem;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.625rem;
+    flex: 1 0 0;
+    border-radius: 0.5rem;
+    border: 1px solid #EBEBEB;
+
+    position: relative;
+
+}
+
+.colorDiv{
+    background: aqua;
+    width: 3.5rem;
+    height: inherit;
+}
+
+.optionDiv{
+    cursor: pointer;
+}
+
+.SubjectDiv{
+    min-width: 7rem;
+    max-width: 7rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;  
+    margin-left: 0.5rem;
+}
+
+.EditDeleteCard{
+    position: absolute;
+    right: -85px;
+    bottom: -80px;
+    z-index: 1;
+}
+
+
+

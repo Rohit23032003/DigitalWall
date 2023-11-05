@@ -1,0 +1,46 @@
+
+#Empty_content1 {
+    color: #000;
+    text-align: center;
+    font-family: Avenir Next;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+
+#Empty_content2{
+    color: #000;
+    text-align: center;
+    font-family: Avenir Next;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+#EmptyFolderContent{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 4.5%;
+    
+}
+
+#img_Empty{
+    width: 12.69306rem;
+    height: 11.30038rem;
+    flex-shrink: 0;
+}
+
+#Empty_Folder_img{
+    display: flex;
+    width: 13.4375rem;
+    height: 13.4375rem;
+    padding: 1.05381rem 0.24813rem 1.08331rem 0.49625rem;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}

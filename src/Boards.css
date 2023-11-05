@@ -1,0 +1,18 @@
+.Boards{
+    margin: 2rem;
+}
+
+#Heading{
+    color: #000;
+    font-family: Avenir Next;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 2.75rem; /* 137.5% */
+}
+.Boards-list{
+    margin-top: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}

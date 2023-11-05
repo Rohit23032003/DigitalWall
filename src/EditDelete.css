@@ -1,0 +1,39 @@
+
+
+#Edit_text , #Delete_text{
+    color: #717171;
+    font-family: Avenir Next;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.5rem; 
+}
+.Edit_Delete{
+    display: flex;
+    cursor: pointer;
+    flex-direction: column;
+    display: flex;
+    width: 7.3125rem;
+    padding: 0.5rem 0rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border-radius: 0.5rem;
+    border: 1px solid #EBEBEB;
+    background:  #FFF;
+
+    box-shadow: 0px 5px 10px 0px rgba(0, 46, 57, 0.15);
+}
+
+#Edit , #Delete{
+    display: flex;
+    margin: 0.5rem ;
+    justify-content:flex-start;
+    flex-direction: row;
+    align-items: center;
+    align-self: stretch;
+}
+
+#Edit_text , #Delete_text {
+    margin-left: 0.35rem;
+}

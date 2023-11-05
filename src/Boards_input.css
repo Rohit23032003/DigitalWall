@@ -1,0 +1,159 @@
+.modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Add a semi-transparent background overlay */
+    z-index: 1; /* Set the z-index to 1 */
+}
+
+.modal-box {
+    width: 28.625rem;
+    height: 22.75rem;
+    flex-shrink: 0;
+    border-radius: 0.5rem;
+    border: 1px solid #EBEBEB;
+    background: #FFF;
+    box-shadow: 0px 5px 10px 0px rgba(0, 46, 57, 0.15);
+    z-index: 2;
+    position: relative;
+    padding: 1.56rem;
+
+}
+
+
+#CreateBoardbtn{
+    display: flex;
+    width: 7.875rem;
+    position: relative;
+    height: 2.5rem;
+    padding: 0.8125rem 1rem;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 1.5rem;
+    border-radius: 0.5rem;
+    background: #AF273E;
+    color:  #FFF;
+
+    font-family: Avenir Next;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.5rem;
+
+    position: absolute;
+    bottom: 10px; 
+    right: 10px;
+
+    border: none;
+    cursor: pointer;
+
+}
+
+
+#cancelImg{
+    display: flex;
+    width: 1.25rem;
+    height: 1.25rem;
+    padding: 0.19531rem;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+#Add_Content{
+    color: #000;
+
+    /* position: absolute; */
+    top:10px;
+    left: 10px;
+    font-family: Avenir Next;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.75rem;
+
+}
+
+#InputField{
+    padding: 0.6rem;
+    width: 27.4375rem;
+    color: #222;
+    font-family: Avenir Next;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    flex-shrink: 0;
+    margin: 20px  0  2.5rem  0;
+    border-radius: 0.25rem;
+    border: 1px solid #DBDBDB;
+    background: #FFF;
+    height: 2rem;
+
+
+}
+
+
+#SelectContent{
+    color: #000;
+    font-family: Avenir Next;
+    font-size: 1.75rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.75rem; 
+}
+
+#SelectContent2{
+    color: #2B2B2B;
+    font-family: Avenir Next;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.25rem; 
+}
+
+.ColorClass{
+    display: flex;
+    flex-direction: row;
+    width: 27%;
+    margin-top: 1rem;
+    justify-content: space-between;
+}
+
+#Color4 , #Color1 , #Color2 ,#Color3{
+    border-radius: 50%;
+    width: 1.50306rem;
+    height: 1.50306rem;
+    cursor: pointer;
+}
+
+
+#Color1{
+    background-color: #A7F0F9;
+}
+
+#Color2{
+    background-color: #C5C5FC;
+}
+
+#Color3{
+    background-color: #FFAEC0;
+}
+
+#Color4{
+    background-color: #FC6;
+}
+
+.selected {
+    border: 2px solid rgb(104, 161, 172);
+}
+
