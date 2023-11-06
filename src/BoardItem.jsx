@@ -8,7 +8,7 @@ const BoardItem = (props) => {
     return (
         <div className='ItemDiv'>
             <div className='colorDiv' style={{background:props?.element?.Color?`${props.element.Color}`:"aqua"}}></div>
-            <div className='SubjectDiv'>{props?.element?.CityName}</div>
+                <div className='SubjectDiv'>{props?.element?.CityName}</div>
             <div className='optionDiv' onClick={() => setShowCard(!showCard)}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path d="M7 3C7 3.55229 7.44771 4.00001 8 4.00001C8.55228 4.00001 9 3.55229 9 3C9 2.44772 8.55228 2 8 2C7.44771 2 7 2.44772 7 3Z" fill="#222222" />

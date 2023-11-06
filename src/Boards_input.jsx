@@ -4,7 +4,6 @@ import { useState } from 'react';
 
 const BoardInput = (props) => {
     let index=null;
-
     if(props?.isEditID) {
         index = props.boardList.findIndex((objs)=>objs.id === props?.isEditID);
     }
@@ -14,36 +13,42 @@ const BoardInput = (props) => {
     const handleColorClick = (color) => {
         setSelectedColor(color);
     };
+
     const handleSubmit = (e)=>{
         e.preventDefault();
         const randomId = crypto.randomUUID();
+        if(inputText===null || inputText.length===0){
+            alert("Please give Name of City ");
+            return;
+        }
         if(props.isEditID!==null){
             console.log("Edit ID "+props.isEditID);
-            const newElementList={
-                id : props.isEditID,
-                Color:selectedColor,
-                CityName:inputText
-            }
-            const changeBoardList = [...props.boardList];
-            changeBoardList.splice(index,1,newElementList);
-            props.setBoardList(changeBoardList);
-            props.setIsEditID(null);
+                const newElementList={
+                    id : props.isEditID,
+                    Color:selectedColor,
+                    CityName:inputText
+                }
+                const changeBoardList = [...props.boardList];
+                changeBoardList.splice(index,1,newElementList);
+                props.setBoardList(changeBoardList);
+                props?.setCreateBoard(!props.createBoard);   
+                props.setIsEditID(null);
         }
         else{
                 props.setBoardList([...props.boardList , 
                     {
                         id:randomId,
                         Color:selectedColor,
-                        CityName: inputText
+                        CityName:inputText
                 }]) ;
+                props?.setCreateBoard(!props.createBoard);   
         }
-        console.log("randorm  "+randomId);
-        props?.setCreateBoard(!props.createBoard);   
+        // console.log("randorm  "+randomId);
     }
 
     const inputChange=(e)=> {
         e.preventDefault();
-        setInputText(e.target.value);
+        setInputText(e.target.value.trim());
     }    
 
 
@@ -77,8 +82,7 @@ const BoardInput = (props) => {
                     <div id='Color3' onClick={() => handleColorClick('#FFAEC0')} className={selectedColor === '#FFAEC0' ? 'selected' : ''}></div>
                     <div id='Color4' onClick={() => handleColorClick('#FC6')}  className =  {selectedColor === '#FC6' ? 'selected' : ''}></div>
                 </div>
-                <button id='CreateBoardbtn' onClick={handleSubmit}>Create board</button>
-                
+                    <button id='CreateBoardbtn' onClick={handleSubmit}>Create board</button>
             </div>
         </div>
     );

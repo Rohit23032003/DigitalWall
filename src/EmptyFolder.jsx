@@ -5,7 +5,7 @@ const EmptyFolder=()=>{
     return (
         <div id='EmptyFolderContent'>
                         <div id="Empty_Folder_img">
-                            <img id="img_Empty"src={image}/>
+                            <img id="img_Empty" alt="" src={image}/>
                         </div>
                         <div id='Empty_content1'>
                             Nothing here yet

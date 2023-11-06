@@ -1,0 +1,32 @@
+.CityNav{
+    /* width: 90rem; */
+    height: 2.5rem;
+    flex-shrink: 0;
+    background: #FFF;
+    display: flex;
+    padding: 0.75rem 2rem;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    border-bottom: 1px solid  #EBEBEB;
+    background: #FFF;
+}
+
+
+.icon_back_text{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+
+#BackArrowIcon{
+    cursor: pointer;
+}
+#text{
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 700;
+}
