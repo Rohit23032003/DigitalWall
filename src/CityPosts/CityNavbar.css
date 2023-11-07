@@ -13,7 +13,7 @@
 }
 
 
-.icon_back_text{
+.icon_back_text , .Search-BookMark{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -30,3 +30,31 @@
     font-style: normal;
     font-weight: 700;
 }
+
+#saperate{
+    width: 0.0625rem;
+    height: 1.125rem;
+    background: #B0B0B0;
+}
+.Search-FieldP{
+    display: flex;
+    /* width: 17.75rem; */
+    height: 0.75rem;
+    padding: 0.8125rem 0.5rem;
+    align-items: center;
+    /* gap: 1.5rem; */
+    border-radius: 0.375rem;
+    border: 1px solid #EBEBEB;
+}
+.Search-Field{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1 0 0;
+}
+
+/* #BookMarkIcon{
+    cursor: pointer;
+    width: 1.25rem;
+    height: 1.25rem;
+} */

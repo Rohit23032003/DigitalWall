@@ -63,11 +63,10 @@
 
     border:none;
     margin-left: 4rem;
-}
-
-.Btn:hover{
     cursor: pointer;
 }
+
+
 
 #btn-img{
     width: 1.25rem;

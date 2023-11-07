@@ -29,7 +29,7 @@
 #CreateBoardbtn{
     display: flex;
     width: 7.875rem;
-    position: relative;
+    /* position: relative; */
     height: 2.5rem;
     padding: 0.8125rem 1rem;
     justify-content: center;
@@ -98,8 +98,6 @@
     border: 1px solid #DBDBDB;
     background: #FFF;
     height: 2rem;
-
-
 }
 
 

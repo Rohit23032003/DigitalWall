@@ -7,21 +7,21 @@ const BoardInput = (props) => {
     if(props?.isEditID) {
         index = props.boardList.findIndex((objs)=>objs.id === props?.isEditID);
     }
-    const [inputText , setInputText] = useState(props.isEditID!==null?`${props?.boardList[index].CityName}`:null);
+    const [inputText , setInputText] = useState(props.isEditID!==null?`${props?.boardList[index].CityName}`:"");
     const [selectedColor, setSelectedColor] = useState(props?.isEditID?`${props?.boardList[index].Color}`:null);
     
-    const handleColorClick = (color) => {
+    const handleColorClick = (color) => { 
         setSelectedColor(color);
     };
 
     const handleSubmit = (e)=>{
         e.preventDefault();
         const randomId = crypto.randomUUID();
-        if(inputText===null || inputText.length===0){
+        if(inputText.length===0){
             alert("Please give Name of City ");
             return;
         }
-        if(props.isEditID!==null){
+        else if(props.isEditID!==null){
             console.log("Edit ID "+props.isEditID);
                 const newElementList={
                     id : props.isEditID,
@@ -48,7 +48,7 @@ const BoardInput = (props) => {
 
     const inputChange=(e)=> {
         e.preventDefault();
-        setInputText(e.target.value.trim());
+        setInputText(e.target.value);
     }    
 
 
@@ -67,7 +67,7 @@ const BoardInput = (props) => {
                 <input type='text' id='InputField'
                  placeholder='Places around the world'
                     onChange={inputChange}
-                    value={inputText!==null?inputText:""}
+                    value={inputText}
                  />
                 
                 <p id='SelectContent'>

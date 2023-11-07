@@ -1,0 +1,44 @@
+.Text-btn{
+    display: flex;
+    padding: 1rem 2rem 1rem 3.25rem;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /* background:  #EBFCFF; */
+}
+
+.Btn{
+    display: flex;
+    width: 11.75rem;
+    height: 2.5rem;
+    padding: 0.8125rem 1rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    border-radius: 0.5rem;
+    background: #D33852;
+    color: #FFF;
+    font-family: Avenir Next;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.5rem; /* 150% */
+
+    border:none;
+    margin-left: 4rem;
+    cursor: pointer;
+}
+#btn-img{
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+}
+
+#HeadingText{
+    width: fit-content;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 2.75rem; 
+}
