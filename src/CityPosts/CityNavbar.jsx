@@ -7,7 +7,7 @@ import BookMarkedIcon from '../imageFolder/BookMarked.png';
 
 import { useState } from 'react';
 
-const CityNavbar = () => {
+const CityNavbar = (props) => {
     const [icon , setIcon] = useState(false);
 
     return (
@@ -23,7 +23,10 @@ const CityNavbar = () => {
                     <div className='Search-FieldP'>
                             <div className="Search-Field">
                                     <img src={SearchIcon} alt='SearchIcon' style={{cursor:"pointer"}}/>  
-                                    <input type="text" placeholder='Search....' id='Input-Field'></input>
+                                    <input type="text" 
+                                    placeholder='Search....' id='Input-Field'
+                                        onChange={(e)=>props.setSearchedQuery(e.target.value.trim().toLowerCase())}
+                                    />
                             </div>
                         </div>
                     <div id='saperate'></div>  

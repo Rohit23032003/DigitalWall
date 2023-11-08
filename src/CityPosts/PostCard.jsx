@@ -8,14 +8,14 @@ import EditDelete from '../EditDelete';
 import RedHeart from '../imageFolder/_HeartLikeFilled.png'
 import BookMarkPost from '../imageFolder/YellowBookmarkOutlined.png'
 
-const PostCard=()=>{
+const PostCard=(props)=>{
     const [likes , setLikes] = useState(0);
     const [showEditDelete , setShowEditDelete] = useState(false);
     const [BookMarked , setBookMarked] =useState(false)
     return (
         <div className='CardMainDiv'>
             <div className='TopSubjectBookMarkEdiDelete'>
-                    <div id='HeadingPostCard'>Galapagos Islands, Ecuador</div>
+                    <div id='HeadingPostCard'>{props?.element?.SubTitle}</div>
                     <img src={BookMarked===true?BookMarkPost:Bookmark} alt='BookMarkPic' 
                         onClick={()=>setBookMarked(!BookMarked)}
                         style={{cursor:"pointer" ,height:"1.25rem"}}
@@ -29,26 +29,19 @@ const PostCard=()=>{
             {
                         showEditDelete &&(
                                     <div className='EditDeleteCard'>
-                                        <EditDelete />
+                                        <EditDelete elementId={props?.element?.id} 
+                                            cityPostList={props.cityPostList}
+                                            setCityPostList = {props.setCityPostList}
+                                            isCityPost={true}
+                                        />
                                      </div>      
                                 )
                     }
-            <p id='CreatedPostDate'>25th July</p>
-            <img src={PlaceImg} alt='' id='CityPlaceImg'/>
+            <p id='CreatedPostDate'>{props?.element?.CreatingDate}</p>
+            <img src={props?.element?.FileUrl?props?.element?.FileUrl:PlaceImg} 
+            alt='' id='CityPlaceImg'/>
             <p id='ContentFieldAboutPlace'>
-                The Galápagos Islands is a volcanic 
-                archipelago in the Pacific Ocean. It's 
-                considered one of the world's foremost 
-                destinations for wildlife-viewing. A province
-                of Ecuador, it lies about 1,000km off its coast. 
-                Its isolated terrain shelters a diversity of plant 
-                and animal species, many found nowhere else. Charles 
-                Darwin visited in 1835, and his observation of Galápagos' 
-                species later inspired his theory of evolution. 
-                species later inspired his theory of evolution. 
-                species later inspired his theory of evolution. 
-                species later inspired his theory of evolution. 
-
+                 {props?.element?.AboutCityText}   
             </p>
             <div id="SaperatedLineCard"></div>
             <div id='LikesTextIcon'>

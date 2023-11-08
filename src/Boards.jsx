@@ -7,7 +7,6 @@ const Boards=(props)=>{
     const [copyBoardList , setCopyBoardList] = useState([]);
 
     useEffect(()=>{
-
         if(props.querySearch.length>0)
         {
             const newQueryCopy = props.querySearch.toLowerCase();

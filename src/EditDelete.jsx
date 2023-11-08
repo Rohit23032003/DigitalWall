@@ -12,9 +12,14 @@ const EditDelete=(props)=>{
 
     const handleDelete = (e)=>{
         e.preventDefault();
-        props.setBoardList(props.boardList.filter(objs=>objs.id!==props.elementId));
+        if(props.isCityPost===true)
+        {
+            props?.setCityPostList(
+                    props?.cityPostList.filter((obj)=>obj.id!==props.elementId)
+                );
+        }
+        else props.setBoardList(props.boardList.filter(objs=>objs.id!==props.elementId));
     }
-
     return (
         <div className='Edit_Delete'>
             <div id="Edit" onClick={handleEdit}>

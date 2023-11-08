@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CityNavbar from "./CityNavbar";
 import Posts from "./Posts";
 import EmptyFolder from "../EmptyFolder";
@@ -7,19 +7,46 @@ import PostCard from "./PostCard";
 import './CityApp.css'
 
 const CityApp=()=>{
-    const [cityPostList , setCityPostList] = useState([{id:1}]);
+    const [cityPostList , setCityPostList] = useState([]);
     const [showInputModal , setShowInputModal] = useState(false);
+    const [searchedQuery , setSearchedQuery] = useState("");
+    const [copyCityPostList , setCityCopyPostList] = useState(cityPostList);
+    
+    useEffect(()=>{
+          if(searchedQuery.length>0)
+          {
+                setCityCopyPostList(
+                    cityPostList.filter(
+                        (element)=>{
+                            return (
+                                element.SubTitle.toLowerCase().includes(searchedQuery)||
+                                element.AboutCityText.toLowerCase().includes(searchedQuery)||
+                                element.CreatingDate.toLowerCase().includes(searchedQuery)
+                            );
+                        }
+                    )
+                    )
+          } 
+          else {
+                setCityCopyPostList(cityPostList);
+          } 
+    },[cityPostList , searchedQuery]);
 
     return(
         <div className= "PostAppMainDiv" >
-            <CityNavbar/>
+            <CityNavbar setSearchedQuery={setSearchedQuery}/>
             <Posts showInputModal={showInputModal} setShowInputModal={setShowInputModal}/>
             {
-                cityPostList.length>0?(
-                    // cityPostList.map(()=>{
-                        <></>
-
-                    // })
+                copyCityPostList.length>0?(
+                    <div id="ShowPostCards">
+                        {
+                            copyCityPostList.map((element)=>{
+                                return <PostCard element={element} key={element.id} 
+                                    cityPostList={cityPostList} setCityPostList={setCityPostList}
+                                />
+                            })
+                        }
+                    </div>
                 ):(
                     <EmptyFolder/>
                 )
@@ -27,16 +54,12 @@ const CityApp=()=>{
             {
                 showInputModal && (
                     <PostInput 
-                    showInputModal={showInputModal} setShowInputModal={setShowInputModal}
+                        showInputModal={showInputModal} setShowInputModal={setShowInputModal}
+                        cityPostList = {cityPostList} setCityPostList ={setCityPostList} 
                     />
                 )
             }
-            <div id="ShowPostCards">
-                <PostCard/>
-                <PostCard/>
-                <PostCard/>
-                <PostCard/>
-            </div>
+            
         </div>
     )
 }

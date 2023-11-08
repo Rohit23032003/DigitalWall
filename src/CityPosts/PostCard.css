@@ -52,6 +52,7 @@
     width: 15.75rem;
     height: 10.125rem;
     flex-shrink: 0;
+    border-radius: 0.5rem;
     margin-top: 1rem;   
 }
 
@@ -59,6 +60,7 @@
     width: 15.75rem;
     height: 15.25rem;
     overflow-y: auto;
+    margin-top: 1rem;
 
 }
 #ContentFieldAboutPlace::-webkit-scrollbar {
