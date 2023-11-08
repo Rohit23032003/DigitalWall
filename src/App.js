@@ -18,12 +18,15 @@ function App() {
     const [createBoard , setCreateBoard] = useState(false);
     const [boardList , setBoardList] = useState([]);
     const [isEditID , setIsEditID] = useState(null);
- 
+    const [querySearch , setQuerySearch] = useState("");
   return (
   <div>
-    <NavBar createBoard = {createBoard} setCreateBoard = {setCreateBoard} />
+    <NavBar createBoard = {createBoard} setCreateBoard = {setCreateBoard} 
+      setQuerySearch ={setQuerySearch}
+    />
     <Boards  boardList={boardList} setBoardList ={setBoardList}  setIsEditID={setIsEditID} 
       createBoard = {createBoard} setCreateBoard = {setCreateBoard} 
+      querySearch={querySearch}
     />
     {
       createBoard && (

@@ -7,7 +7,7 @@ import PostCard from "./PostCard";
 import './CityApp.css'
 
 const CityApp=()=>{
-    const [cityPostList , setCityPostList] = useState([{}]);
+    const [cityPostList , setCityPostList] = useState([{id:1}]);
     const [showInputModal , setShowInputModal] = useState(false);
 
     return(
@@ -16,7 +16,10 @@ const CityApp=()=>{
             <Posts showInputModal={showInputModal} setShowInputModal={setShowInputModal}/>
             {
                 cityPostList.length>0?(
-                    <></>
+                    // cityPostList.map(()=>{
+                        <></>
+
+                    // })
                 ):(
                     <EmptyFolder/>
                 )
@@ -28,7 +31,12 @@ const CityApp=()=>{
                     />
                 )
             }
-            <PostCard/>
+            <div id="ShowPostCards">
+                <PostCard/>
+                <PostCard/>
+                <PostCard/>
+                <PostCard/>
+            </div>
         </div>
     )
 }

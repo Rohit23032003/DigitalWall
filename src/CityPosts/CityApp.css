@@ -1,4 +1,12 @@
 .PostAppMainDiv{
     background-color:#EBFCFF;
     min-height: 100vh;
+    padding-bottom: 2rem;
+}
+
+#ShowPostCards{
+    padding-left: 2rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;    
 }
