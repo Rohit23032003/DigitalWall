@@ -1,0 +1,85 @@
+.CardMainDiv{
+    margin:1.75rem 2rem 1.75rem 4rem;
+    width: 17.1875rem;
+    height: fit-content;
+    max-height: 36.0625rem;
+    padding: 1rem ;
+    padding-right: 0;
+    border-radius: 0.5rem;
+    background: #FFF;
+    gap: 0.625rem;
+    position: relative;
+}
+#HeadingPostCard {
+    width: 11.1875rem;
+    height: 3.5rem;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.75rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+}
+.TopSubjectBookMarkEdiDelete{
+    display: flex;
+    flex-direction: row;
+    min-width: 16.18rem;
+    max-width: 16.18rem;
+    justify-content: space-between;
+}
+
+#LikesTextIcon{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 0.5rem;
+}
+
+#CreatedPostDate{
+    color:  #B0B0B0;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1rem;
+}
+
+#CityPlaceImg{
+    width: 15.75rem;
+    height: 10.125rem;
+    flex-shrink: 0;
+    margin-top: 1rem;   
+}
+
+#ContentFieldAboutPlace{
+    width: 15.75rem;
+    height: 15.25rem;
+    overflow-y: auto;
+
+}
+#ContentFieldAboutPlace::-webkit-scrollbar {
+    width: 0.5em; /* Adjust the width as needed */
+}
+#ContentFieldAboutPlace::-webkit-scrollbar-thumb {
+    background-color: transparent; /* Hide the thumb */
+}
+
+#SaperatedLineCard{
+    width: 15.0625rem;
+    height: 0.0625rem;
+    flex-shrink: 0;
+    border-radius: 0.25rem;
+    border: 1px solid #EBEBEB;
+    margin-top: 2rem;
+}
+
+.EditDeleteCard{
+        position: absolute;
+        right: -6rem;
+        top: 2.25rem;
+        z-index: 1;
+}

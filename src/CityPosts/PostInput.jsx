@@ -33,7 +33,7 @@ const PostInput = (props) =>{
                     id='FileInputBtn'
                 >
 
-                <img src={PhotoIcon} id='FileIcon'/>
+                <img src={PhotoIcon} id='FileIcon' alt=''/>
                 <span id='FileInputText'>Add your image</span>
                 </div>
                 {selectedFile && <p id='SelectedFileText'> Selected File: {selectedFile.name}</p>}

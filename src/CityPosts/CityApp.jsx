@@ -3,13 +3,15 @@ import CityNavbar from "./CityNavbar";
 import Posts from "./Posts";
 import EmptyFolder from "../EmptyFolder";
 import PostInput from './PostInput'
+import PostCard from "./PostCard";
+import './CityApp.css'
 
 const CityApp=()=>{
-    const [cityPostList , setCityPostList] = useState([]);
+    const [cityPostList , setCityPostList] = useState([{}]);
     const [showInputModal , setShowInputModal] = useState(false);
 
     return(
-        <div style={{backgroundColor:"#EBFCFF" , minHeight:"100vh"}}>
+        <div className= "PostAppMainDiv" >
             <CityNavbar/>
             <Posts showInputModal={showInputModal} setShowInputModal={setShowInputModal}/>
             {
@@ -26,6 +28,7 @@ const CityApp=()=>{
                     />
                 )
             }
+            <PostCard/>
         </div>
     )
 }
