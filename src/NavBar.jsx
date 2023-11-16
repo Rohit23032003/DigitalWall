@@ -1,5 +1,5 @@
 import './NavBar.css';
-const NavBar=(props)=>{
+const NavBar = (props)=>{
 
     return (
         <div className="Navbar">

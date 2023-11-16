@@ -27,7 +27,7 @@ const Boards=(props)=>{
                 My boards    
             </div>
             {
-                props.boardList.length>0?(
+                copyBoardList.length>0?(
                         <div className='Boards-list'>
                                         {
                                             copyBoardList.map((element)=>{
