@@ -4,6 +4,10 @@ const EditDelete=(props)=>{
 
     const handleEdit=(e)=>{
         e.preventDefault();
+        if(props.isCityPost===true ){
+            props.setEditId(props.elementId);
+            return ;
+        }
         props.setIsEditID(props?.elementId);        
         props.setCreateBoard(!props.createBoard);
         console.log(" ID=="+props?.elementId);

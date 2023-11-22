@@ -11,7 +11,10 @@ const CityApp=()=>{
     const [showInputModal , setShowInputModal] = useState(false);
     const [searchedQuery , setSearchedQuery] = useState("");
     const [copyCityPostList , setCityCopyPostList] = useState(cityPostList);
+    const [EditId , setEditId] = useState(null);
+
     
+
     useEffect(()=>{
           if(searchedQuery.length>0)
           {
@@ -41,7 +44,8 @@ const CityApp=()=>{
                     <div id="ShowPostCards">
                         {
                             copyCityPostList.map((element)=>{
-                                return <PostCard element={element} key={element.id} 
+                                return <PostCard element={element} 
+                                    key={element.id} setEditId= {setEditId} 
                                     cityPostList={cityPostList} setCityPostList={setCityPostList}
                                 />
                             })
@@ -54,8 +58,12 @@ const CityApp=()=>{
             {
                 showInputModal && (
                     <PostInput 
-                        showInputModal={showInputModal} setShowInputModal={setShowInputModal}
-                        cityPostList = {cityPostList} setCityPostList ={setCityPostList} 
+                        EditId = {EditId} 
+                        setEditId = {setEditId}
+                        showInputModal = {showInputModal} 
+                        setShowInputModal = {setShowInputModal}
+                        cityPostList = {cityPostList} 
+                        setCityPostList = {setCityPostList} 
                     />
                 )
             }

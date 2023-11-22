@@ -33,10 +33,12 @@ const PostCard=(props)=>{
                                             cityPostList={props.cityPostList}
                                             setCityPostList = {props.setCityPostList}
                                             isCityPost={true}
+                                            setEditId ={props.setEditId}
                                         />
                                      </div>      
                                 )
                     }
+                    
             <p id='CreatedPostDate'>{props?.element?.CreatingDate}</p>
             <img src={props?.element?.FileUrl?props?.element?.FileUrl:PlaceImg} 
             alt='' id='CityPlaceImg'/>

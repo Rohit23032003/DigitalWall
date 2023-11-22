@@ -7,16 +7,21 @@ import PhotoIcon from '../imageFolder/Files.JPG'
 const currentDate = new Date();
 const day = currentDate.getDate();
 const month = currentDate.getMonth();
+
 const monthNames = [
   'January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December'
 ];
 
 const PostInput = (props) =>{
+    let Editobj =null;
+    if(props.EditId!==null){
+        Editobj = props.cityPostList.filter((element) => element.id === props.EditId); 
+    }
 
     const [selectedFile, setSelectedFile] = useState(null);
-    const [postTitile , setPostTitile] =useState(""); 
-    const [citySummaryText , setCitySummaryText] = useState("");
+    const [postTitile , setPostTitile] =useState(Editobj!==null?Editobj.SubTitle:""); 
+    const [citySummaryText , setCitySummaryText] = useState(Editobj!==null?Editobj.AboutCityText:"");
 
     const handleFileChange = (e) => {
         e.preventDefault();
@@ -59,6 +64,8 @@ const PostInput = (props) =>{
                 <input type='text' placeholder='Galápagos Islands, Ecuador' 
                 id='InputFieldPost'
                     onChange={(e)=>{setPostTitile(e.target.value.trim())}}
+                    value={postTitile}    
+
                 />
                 <input type="file" id="fileInput" style={{ display: 'none' }} 
                 accept="image/jpeg"
@@ -77,6 +84,7 @@ const PostInput = (props) =>{
                 <div id='inputFieldTextHeading'>What’s on your mind?</div>
                 <input id='InputFieldPost'placeholder='Type here'
                     onChange={(e)=>setCitySummaryText(e.target.value.trim())}
+                    value={citySummaryText}
                 />
                 <button id='CreateBoardbtnPost' onClick={handlePublish}>Publish</button>
             </div>
