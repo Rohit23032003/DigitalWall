@@ -14,9 +14,17 @@ const monthNames = [
 ];
 
 const PostInput = (props) =>{
-    let Editobj =null;
+    let Editobj = null;
     if(props.EditId!==null){
-        Editobj = props.cityPostList.filter((element) => element.id === props.EditId); 
+        
+        for(let element of props.cityPostList){
+            if(element.id===props.EditId){
+                Editobj = element;
+                break;
+            }
+        }
+        // Editobj = props.cityPostList.filter((element) => element.id === props.EditId); 
+        console.log("Hello"+Editobj);
     }
 
     const [selectedFile, setSelectedFile] = useState(null);
@@ -35,14 +43,30 @@ const PostInput = (props) =>{
         e.preventDefault();
         if(selectedFile!==null && postTitile.trim().length>0 && citySummaryText.trim().length>0)
         {
-
-            props.setCityPostList([...props.cityPostList ,{
-                id:crypto.randomUUID(),
-                SubTitle:postTitile,
-                FileUrl : URL.createObjectURL(selectedFile),
-                AboutCityText: citySummaryText,
-                CreatingDate: `${day} ${monthNames[month]}`               
-            }]);
+            if(props.EditId!==null)
+            {
+                const index = props.cityPostList.findIndex((element)=> element.id === props.EditId);
+                const ChangeCityList = [...props.cityPostList];
+                const newListItem = {
+                    id:props.cityPostList[index].id,
+                    SubTitle:postTitile,
+                    FileUrl:URL.createObjectURL(selectedFile),
+                    AboutCityText:citySummaryText,
+                    CreatingDate:props.cityPostList[index].CreatingDate
+                }
+                ChangeCityList.splice(index , 1 , newListItem);
+                props.setCityPostList(ChangeCityList);
+                props.setEditId(null);
+            }
+           else {   
+                props.setCityPostList([...props.cityPostList ,{
+                    id:crypto.randomUUID(),
+                    SubTitle:postTitile,
+                    FileUrl : URL.createObjectURL(selectedFile),
+                    AboutCityText: citySummaryText,
+                    CreatingDate: `${day} ${monthNames[month]}`               
+                }]);
+            }
             props.setShowInputModal(!props.showInputModal);
         }
         else{
@@ -56,7 +80,10 @@ const PostInput = (props) =>{
                 <div className='Text-Cancel'>
                     <p id='TexttoCreate'>Create a post</p>
                     <img src={CancelIcon} alt='' style={{cursor:"pointer"}}
-                        onClick={() => props.setShowInputModal(!props.showInputModal)}
+                        onClick={() =>{ 
+                            props.setShowInputModal(!props.showInputModal);
+                            props.setEditId(null);
+                        }}
                     />
                 </div>          
                 <p id='ExtraText'>Write something for your post</p>

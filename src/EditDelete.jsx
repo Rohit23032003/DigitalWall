@@ -6,11 +6,13 @@ const EditDelete=(props)=>{
         e.preventDefault();
         if(props.isCityPost===true ){
             props.setEditId(props.elementId);
+            props.setShowInputModal(true);
+            props.setShowEditDelete(false);
             return ;
         }
         props.setIsEditID(props?.elementId);        
         props.setCreateBoard(!props.createBoard);
-        console.log(" ID=="+props?.elementId);
+        // console.log(" ID=="+props?.elementId);
         props.setShowCard(!props.showCard);
     }
 

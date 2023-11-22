@@ -22,7 +22,7 @@ const BoardInput = (props) => {
             return;
         }
         else if(props.isEditID!==null){
-            console.log("Edit ID "+props.isEditID);
+            // console.log("Edit ID "+props.isEditID);
                 const newElementList={
                     id : props.isEditID,
                     Color:selectedColor,

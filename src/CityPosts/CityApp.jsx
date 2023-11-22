@@ -13,7 +13,6 @@ const CityApp=()=>{
     const [copyCityPostList , setCityCopyPostList] = useState(cityPostList);
     const [EditId , setEditId] = useState(null);
 
-    
 
     useEffect(()=>{
           if(searchedQuery.length>0)
@@ -47,7 +46,8 @@ const CityApp=()=>{
                                 return <PostCard element={element} 
                                     key={element.id} setEditId= {setEditId} 
                                     cityPostList={cityPostList} setCityPostList={setCityPostList}
-                                />
+                                    setShowInputModal={setShowInputModal}
+                                    />
                             })
                         }
                     </div>

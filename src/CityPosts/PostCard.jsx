@@ -34,6 +34,8 @@ const PostCard=(props)=>{
                                             setCityPostList = {props.setCityPostList}
                                             isCityPost={true}
                                             setEditId ={props.setEditId}
+                                            setShowInputModal={props.setShowInputModal}
+                                            setShowEditDelete={setShowEditDelete}
                                         />
                                      </div>      
                                 )
