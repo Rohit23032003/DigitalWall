@@ -4,6 +4,7 @@ const EditDelete=(props)=>{
 
     const handleEdit=(e)=>{
         e.preventDefault();
+        e.stopPropagation();
         if(props.isCityPost===true ){
             props.setEditId(props.elementId);
             props.setShowInputModal(true);
@@ -18,6 +19,7 @@ const EditDelete=(props)=>{
 
     const handleDelete = (e)=>{
         e.preventDefault();
+        e.stopPropagation();
         if(props.isCityPost===true)
         {
             props?.setCityPostList(

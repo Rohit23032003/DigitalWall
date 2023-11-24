@@ -2,7 +2,17 @@ import './Boards_input.css';
 import cancelImg from './imageFolder/Group1176.png'
 import { useState } from 'react';
 
+
+import { collection , addDoc ,doc ,setDoc} from 'firebase/firestore';
+import dataBase from './firebaseconfig'
+import {useCollectionData} from 'react-firebase-hooks/firestore'
+
 const BoardInput = (props) => {
+    
+    const CitiesRef = collection(dataBase , 'Cities');
+
+    
+    
     let index=null;
     if(props?.isEditID) {
         index = props.boardList.findIndex((objs)=>objs.id === props?.isEditID);
@@ -14,43 +24,50 @@ const BoardInput = (props) => {
         setSelectedColor(color);
     };
 
-    const handleSubmit = (e)=>{
+     const  handleSubmit = async(e)=>{
         e.preventDefault();
         const randomId = crypto.randomUUID();
-        if(inputText.length===0){
-            alert("Please give Name of City ");
-            return;
-        }
-        else if(props.isEditID!==null){
-            // console.log("Edit ID "+props.isEditID);
-                const newElementList={
-                    id : props.isEditID,
-                    Color:selectedColor,
-                    CityName:inputText
-                }
-                const changeBoardList = [...props.boardList];
-                changeBoardList.splice(index,1,newElementList);
-                props.setBoardList(changeBoardList);
-                props?.setCreateBoard(!props.createBoard);   
-                props.setIsEditID(null);
-        }
-        else{
-                props.setBoardList([...props.boardList , 
-                    {
-                        id:randomId,
+        try{
+
+            if(inputText.length===0){
+                alert("Please give Name of City ");
+                return;
+            }
+            else if(props.isEditID!==null){
+                // console.log("Edit ID "+props.isEditID);
+                    const newElementList={
+                        id : props.isEditID,
                         Color:selectedColor,
                         CityName:inputText
-                }]) ;
-                props?.setCreateBoard(!props.createBoard);   
-        }
-        // console.log("randorm  "+randomId);
-    }
-
+                    }
+                    const changeBoardList = [...props.boardList];
+                    changeBoardList.splice(index,1,newElementList);
+                    props.setBoardList(changeBoardList);
+                    props?.setCreateBoard(!props.createBoard);   
+                    props.setIsEditID(null);
+                }
+                else{
+                    const newItemData ={
+                            id:randomId,
+                            Color:selectedColor,
+                            CityName:inputText
+                    }
+                    props.setBoardList([...props.boardList , newItemData]) ;
+                        props?.setCreateBoard(!props.createBoard);   
+                        
+                            const newDocRef = doc(CitiesRef, `${randomId}`);
+                           await setDoc(newDocRef , newItemData ); 
+                        }
+            }
+            catch(error){
+                   alert(error+" Occured "); 
+            }
+        } 
+            
     const inputChange=(e)=> {
         e.preventDefault();
         setInputText(e.target.value);
     }    
-
 
 
     return (
@@ -87,5 +104,4 @@ const BoardInput = (props) => {
         </div>
     );
 }
-
 export default BoardInput;

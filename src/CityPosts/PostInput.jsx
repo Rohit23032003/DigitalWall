@@ -3,6 +3,10 @@ import './PostInput.css'
 import CancelIcon from '../imageFolder/Group1176.png'
 import { useState } from 'react';
 import PhotoIcon from '../imageFolder/Files.JPG'
+// import firestore from '../firebaseconfig'
+
+// const storage = firestore.storage();
+
 
 const currentDate = new Date();
 const day = currentDate.getDate();

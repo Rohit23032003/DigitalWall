@@ -3,26 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 
-import {RouterProvider, createBrowserRouter} from 'react-router-dom' ;
+import {Route, RouterProvider, createBrowserRouter, createRoutesFromElements} from 'react-router-dom' ;
 import Layout from './Layout';
 import CityApp from './CityPosts/CityApp';
 
-const router = createBrowserRouter([
-  {
-    path:'/',
-    element:<Layout/>,
-    children:[
-      {
-        path:'',
-        element:<App/>
-      },
-      {
-        path:'about',
-        element:<CityApp/>
-      }
-    ]
-  }
-]);
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path='/' element={<Layout/>}>
+      <Route path='' element={<App/>}/>
+      <Route path='about/:CityID' element={<CityApp/>}/>
+    </Route>
+  )
+  );
 
 
 
