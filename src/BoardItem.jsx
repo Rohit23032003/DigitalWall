@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import EditDelete from './EditDelete';
 
 const BoardItem = (props) => {
+
     const [showCard, setShowCard] = useState(false);
     const navigate = useNavigate();
 
@@ -16,6 +17,7 @@ const BoardItem = (props) => {
          e.stopPropagation();
          setShowCard(!showCard)
     }    
+    
     return (
         <div className='ItemDiv' onClick={handleNavigateClick}>
             <div className='colorDiv' style={{background:props?.element?.Color?`${props.element.Color}`:"aqua"}}></div>
@@ -30,7 +32,7 @@ const BoardItem = (props) => {
             {showCard && (
                 <div className='EditDeleteCard'>
                     <EditDelete elementId={props?.element?.id} setIsEditID={props.setIsEditID}
-                    createBoard = {props.createBoard} setCreateBoard = {props.setCreateBoard}
+                        createBoard = {props.createBoard} setCreateBoard = {props.setCreateBoard}
                         showCard={showCard}  setShowCard={setShowCard}
                         setBoardList={props.setBoardList}
                         boardList = {props.boardList}

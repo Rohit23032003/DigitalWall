@@ -19,7 +19,6 @@ const FetchCityPost = async (searchId) => {
 
     try {
         const subCollectionSnapshot = await getDocs(subCollectionRef);
-        console.log(subCollectionSnapshot);
         subCollectionSnapshot.forEach((doc) => {
         const documentData = {
             id: doc.id,

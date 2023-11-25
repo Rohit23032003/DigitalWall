@@ -8,16 +8,57 @@ import EditDelete from '../EditDelete';
 import RedHeart from '../imageFolder/_HeartLikeFilled.png'
 import BookMarkPost from '../imageFolder/YellowBookmarkOutlined.png'
 
+import { doc, collection, updateDoc } from 'firebase/firestore';
+import {db } from '../firebaseconfig';
+import { useParams } from 'react-router-dom';
+
 const PostCard=(props)=>{
-    const [likes , setLikes] = useState(0);
+    const [readObj , setReadObj]= useState(props.element);
+
+
+    const [likes , setLikes] = useState(readObj.Likes);
     const [showEditDelete , setShowEditDelete] = useState(false);
-    const [BookMarked , setBookMarked] =useState(false)
+    const [BookMarked , setBookMarked] =useState(readObj.BookMark);
+    
+    const {CityID} = useParams();
+    const searchId = CityID.slice(1);
+
+    const parentDocRef = doc(db, `Cities/${searchId}`); 
+    const subCollectionRef = collection(parentDocRef, 'VisitPlaces');
+    
+    const handleLikes=async(e)=>{
+        e.preventDefault();
+        e.stopPropagation();
+        const newListItem = {
+            ...readObj,
+            Likes:likes+1
+        }
+        setReadObj(newListItem);
+        setLikes(likes+1);
+        const PostDocRef = doc(subCollectionRef, readObj.id);
+        await updateDoc(PostDocRef , newListItem);
+    }
+
+    const handleBookMark=async(e)=>{
+        e.preventDefault();
+        e.stopPropagation();
+        const newListItem = {
+                ...readObj,
+                BookMark:!BookMarked
+            }
+            setReadObj(newListItem);
+            setBookMarked(!BookMarked);
+            const PostDocRef = doc(subCollectionRef, readObj.id);
+            await updateDoc(PostDocRef , newListItem);
+    }
+
+
     return (
         <div className='CardMainDiv'>
             <div className='TopSubjectBookMarkEdiDelete'>
                     <div id='HeadingPostCard'>{props?.element?.SubTitle}</div>
                     <img src={BookMarked===true?BookMarkPost:Bookmark} alt='BookMarkPic' 
-                        onClick={()=>setBookMarked(!BookMarked)}
+                        onClick={handleBookMark}
                         style={{cursor:"pointer" ,height:"1.25rem"}}
                     />
                     <img src={Option} alt='OptionIcon' style={{height:"1.25rem",cursor:"pointer"}}
@@ -36,6 +77,7 @@ const PostCard=(props)=>{
                                             setEditId ={props.setEditId}
                                             setShowInputModal={props.setShowInputModal}
                                             setShowEditDelete={setShowEditDelete}
+                                            searchId={searchId}
                                         />
                                      </div>      
                                 )
@@ -49,7 +91,8 @@ const PostCard=(props)=>{
             </p>
             <div id="SaperatedLineCard"></div>
             <div id='LikesTextIcon'>
-                 <img src={likes>0?RedHeart:EmptyHeartIcon} alt='HeartIcon' onClick={()=>setLikes(likes+1)}/>
+                 <img src={likes>0?RedHeart:EmptyHeartIcon} alt='HeartIcon' 
+                 onClick={handleLikes}/>
                 <span>{likes}</span>
             </div>
         </div>

@@ -12,7 +12,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Layout/>}>
       <Route path='' element={<App/>} loader={FetchCities} />
-      <Route path='about/:CityID' element={<CityApp/>} />
+      <Route path='about/:CityID' element={<CityApp/>}/>
     </Route>
   )
   );
