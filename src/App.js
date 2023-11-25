@@ -5,7 +5,7 @@ import Boards from './Boards';
 import BoardInput from './Boards_input';
 import { useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
-import dataBase from './firebaseconfig'; 
+import {db} from './firebaseconfig'; 
 
 import { useLoaderData } from 'react-router-dom';
 
@@ -40,7 +40,7 @@ function App() {
 
 const FetchCities=async ()=>{
 
-  const citiesCollectionRef = collection(dataBase, 'Cities'); // Replace 'Cities' with your collection name
+  const citiesCollectionRef = collection(db, 'Cities'); // Replace 'Cities' with your collection name
   const data=[];
       try {
         const querySnapshot = await getDocs(citiesCollectionRef);

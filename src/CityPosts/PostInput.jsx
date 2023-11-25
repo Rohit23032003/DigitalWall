@@ -3,10 +3,11 @@ import './PostInput.css'
 import CancelIcon from '../imageFolder/Group1176.png'
 import { useState } from 'react';
 import PhotoIcon from '../imageFolder/Files.JPG'
-import { doc, collection, setDoc, getDocs } from 'firebase/firestore';
-import db from '../firebaseconfig';
+import { doc, collection, setDoc, updateDoc } from 'firebase/firestore';
+import {db , storage} from '../firebaseconfig';
 import { useParams } from 'react-router-dom';
 
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 
 const currentDate = new Date();
@@ -49,12 +50,23 @@ const PostInput = (props) =>{
         setSelectedFile(file);
       }
     };
-    
+
      const handlePublish = async(e)=>{
         e.preventDefault();
+        
         if(selectedFile!==null && postTitile.trim().length>0 && citySummaryText.trim().length>0)
         {
             props.setShowInputModal(!props.showInputModal);
+            const storageRef = ref(storage, `images/${selectedFile.name}`);
+           
+            await uploadBytes(storageRef, selectedFile);
+
+            // Get the download URL of the uploaded file
+            const downloadURL = await getDownloadURL(storageRef);
+
+            const parentDocRef = doc(db, `Cities`,CityID); 
+            const subCollectionRef = collection(parentDocRef, 'VisitPlaces'); 
+
             if(props.EditId!==null)
             {
                 const index = props.cityPostList.findIndex((element)=> element.id === props.EditId);
@@ -62,29 +74,32 @@ const PostInput = (props) =>{
                 const newListItem = {
                     id:props.cityPostList[index].id,
                     SubTitle:postTitile,
-                    FileUrl:URL.createObjectURL(selectedFile),
+                    FileUrl:downloadURL,
                     AboutCityText:citySummaryText,
-                    CreatingDate:props.cityPostList[index].CreatingDate
+                    CreatingDate:props.cityPostList[index].CreatingDate,
+                    Likes:props.cityPostList[index].Likes,
+                    BookMark:props.cityPostList[index].BookMark,
                 }
+                const PostDocRef = doc(subCollectionRef, newListItem.id);
+                await updateDoc(PostDocRef , newListItem);
+
                 ChangeCityList.splice(index , 1 , newListItem);
                 props.setCityPostList(ChangeCityList);
                 props.setEditId(null);
             }
-           else {
-
-
+           else{
                     const newPostItem ={
                         id:crypto.randomUUID(),
                         SubTitle:postTitile,
-                        FileUrl : URL.createObjectURL(selectedFile),
+                        FileUrl : downloadURL,
                         AboutCityText: citySummaryText,
-                        CreatingDate: `${day} ${monthNames[month]}`               
+                        CreatingDate: `${day} ${monthNames[month]}`,
+                        Likes:0,
+                        BookMark:false,               
                     }
 
                     props.setCityPostList([...props.cityPostList ,newPostItem]);
-                    const parentDocRef = doc(db, `Cities`,CityID); // Replace with your actual collection and document names
 
-                    const subCollectionRef = collection(parentDocRef, 'VisitPlaces'); // Replace with your actual subcollection name
                     const PostDocRef = doc(subCollectionRef, `${newPostItem.id}`);
                     try{
                         await setDoc(PostDocRef, newPostItem);
@@ -93,7 +108,6 @@ const PostInput = (props) =>{
                     }
 
             }
-            // props.setShowInputModal(!props.showInputModal);
         }
         else{
             alert("Please Enter the value into the fields");

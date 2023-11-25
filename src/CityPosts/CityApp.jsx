@@ -6,10 +6,9 @@ import PostInput from './PostInput'
 import PostCard from "./PostCard";
 import './CityApp.css'
 
-import db from '../firebaseconfig'; 
+import {db} from '../firebaseconfig'; 
 
-import { doc, collection, addDoc, getDocs } from 'firebase/firestore';
-import { useLoaderData } from "react-router-dom";
+import { doc, collection, getDocs } from 'firebase/firestore';
 import { useParams } from "react-router-dom";
 
 

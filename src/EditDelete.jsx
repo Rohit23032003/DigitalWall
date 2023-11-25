@@ -1,10 +1,10 @@
 import './EditDelete.css'
 
 import { collection , deleteDoc ,doc } from 'firebase/firestore';
-import dataBase from './firebaseconfig';
+import {db} from './firebaseconfig';
 import { useParams } from 'react-router-dom';
 
-const citiesCollectionRef = collection(dataBase, 'Cities'); 
+const citiesCollectionRef = collection(db, 'Cities'); 
 
 
 const EditDelete=  (props)=>{
@@ -36,7 +36,7 @@ const EditDelete=  (props)=>{
                     props?.cityPostList.filter((obj)=>obj.id!==props.elementId)
                 );
                 
-                const parentDocRef = doc(dataBase, `Cities/${searchId}`); 
+                const parentDocRef = doc(db, `Cities/${searchId}`); 
                 const subCollectionRef = collection(parentDocRef, 'VisitPlaces');               
                 const PosDocRef = doc(subCollectionRef, props.elementId);
                 await deleteDoc(PosDocRef);

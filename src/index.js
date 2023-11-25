@@ -4,7 +4,7 @@ import './index.css';
 
 import {Route, RouterProvider, createBrowserRouter, createRoutesFromElements} from 'react-router-dom' ;
 import Layout from './Layout';
-import {CityApp ,FetchCityPost}from './CityPosts/CityApp';
+import {CityApp }from './CityPosts/CityApp';
 
 import {FetchCities , App} from './App';
 

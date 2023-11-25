@@ -4,14 +4,14 @@ import { useState } from 'react';
 
 
 import { collection  ,doc ,setDoc ,updateDoc} from 'firebase/firestore';
-import dataBase from './firebaseconfig'
+import {db} from './firebaseconfig'
 
 
-const citiesCollectionRef = collection(dataBase, 'Cities'); // Replace 'Cities' with your collection name
+const citiesCollectionRef = collection(db, 'Cities'); // Replace 'Cities' with your collection name
 
 const BoardInput = (props) => {
     
-    const CitiesRef = collection(dataBase , 'Cities');
+    const CitiesRef = collection(db , 'Cities');
     
     let index=null;
     if(props?.isEditID) {
