@@ -4,19 +4,17 @@ import NavBar  from './NavBar';
 import Boards from './Boards';
 import BoardInput from './Boards_input';
 import { useState } from 'react';
-// import { getFirestore , collection , addDoc , doc , getDoc  } from "firebase/firestore";
-// import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { collection, getDocs } from 'firebase/firestore';
+import dataBase from './firebaseconfig'; 
 
-// import { useState } from 'react';
-
-// const DataStore = getStorage(app);
-
-
+import { useLoaderData } from 'react-router-dom';
 
 function App() {
 
+    const Citylist = useLoaderData();
+
+    const [boardList , setBoardList] = useState(Citylist);
     const [createBoard , setCreateBoard] = useState(false);
-    const [boardList , setBoardList] = useState([]);
     const [isEditID , setIsEditID] = useState(null);
     const [querySearch , setQuerySearch] = useState("");
   return (
@@ -40,4 +38,24 @@ function App() {
   );
 }
 
-export default App;
+const FetchCities=async ()=>{
+
+  const citiesCollectionRef = collection(dataBase, 'Cities'); // Replace 'Cities' with your collection name
+  const data=[];
+      try {
+        const querySnapshot = await getDocs(citiesCollectionRef);
+
+        querySnapshot.forEach((doc) => {
+          data.push({
+            id: doc.id,
+            ...doc.data(),
+          });
+        });
+
+      } catch (error) {
+        alert('Error getting documents: ', error);
+      }
+      return data;
+}
+
+export {App,FetchCities};

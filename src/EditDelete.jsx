@@ -1,6 +1,12 @@
 import './EditDelete.css'
 
-const EditDelete=(props)=>{
+import { collection , deleteDoc ,doc } from 'firebase/firestore';
+import dataBase from './firebaseconfig';
+
+const citiesCollectionRef = collection(dataBase, 'Cities'); 
+
+
+const EditDelete=  (props)=>{
 
     const handleEdit=(e)=>{
         e.preventDefault();
@@ -13,11 +19,10 @@ const EditDelete=(props)=>{
         }
         props.setIsEditID(props?.elementId);        
         props.setCreateBoard(!props.createBoard);
-        // console.log(" ID=="+props?.elementId);
         props.setShowCard(!props.showCard);
     }
 
-    const handleDelete = (e)=>{
+    const handleDelete = async(e)=>{
         e.preventDefault();
         e.stopPropagation();
         if(props.isCityPost===true)
@@ -26,7 +31,14 @@ const EditDelete=(props)=>{
                     props?.cityPostList.filter((obj)=>obj.id!==props.elementId)
                 );
         }
-        else props.setBoardList(props.boardList.filter(objs=>objs.id!==props.elementId));
+        else {
+
+            props.setBoardList(props.boardList.filter(objs=>objs.id!==props.elementId));
+            
+            const cityDocRef = doc(citiesCollectionRef, props.elementId);
+            await deleteDoc(cityDocRef);
+            
+        }
     }
     return (
         <div className='Edit_Delete'>

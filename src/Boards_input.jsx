@@ -3,15 +3,15 @@ import cancelImg from './imageFolder/Group1176.png'
 import { useState } from 'react';
 
 
-import { collection , addDoc ,doc ,setDoc} from 'firebase/firestore';
+import { collection  ,doc ,setDoc ,updateDoc} from 'firebase/firestore';
 import dataBase from './firebaseconfig'
-import {useCollectionData} from 'react-firebase-hooks/firestore'
+
+
+const citiesCollectionRef = collection(dataBase, 'Cities'); // Replace 'Cities' with your collection name
 
 const BoardInput = (props) => {
     
     const CitiesRef = collection(dataBase , 'Cities');
-
-    
     
     let index=null;
     if(props?.isEditID) {
@@ -45,6 +45,11 @@ const BoardInput = (props) => {
                     props.setBoardList(changeBoardList);
                     props?.setCreateBoard(!props.createBoard);   
                     props.setIsEditID(null);
+
+                    const cityDocRef = doc(citiesCollectionRef, props.isEditID);
+                    await updateDoc(cityDocRef, newElementList);
+
+
                 }
                 else{
                     const newItemData ={
@@ -56,7 +61,7 @@ const BoardInput = (props) => {
                         props?.setCreateBoard(!props.createBoard);   
                         
                             const newDocRef = doc(CitiesRef, `${randomId}`);
-                           await setDoc(newDocRef , newItemData ); 
+                            await setDoc(newDocRef , newItemData ); 
                         }
             }
             catch(error){
