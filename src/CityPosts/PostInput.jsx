@@ -3,9 +3,10 @@ import './PostInput.css'
 import CancelIcon from '../imageFolder/Group1176.png'
 import { useState } from 'react';
 import PhotoIcon from '../imageFolder/Files.JPG'
-// import firestore from '../firebaseconfig'
+import { doc, collection, setDoc, getDocs } from 'firebase/firestore';
+import db from '../firebaseconfig';
+import { useParams } from 'react-router-dom';
 
-// const storage = firestore.storage();
 
 
 const currentDate = new Date();
@@ -17,8 +18,15 @@ const monthNames = [
   'July', 'August', 'September', 'October', 'November', 'December'
 ];
 
+
+
 const PostInput = (props) =>{
     let Editobj = null;
+
+    let { CityID } = useParams();
+    CityID = CityID.slice(1);
+    console.log(CityID);
+
     if(props.EditId!==null){
         
         for(let element of props.cityPostList){
@@ -27,8 +35,7 @@ const PostInput = (props) =>{
                 break;
             }
         }
-        // Editobj = props.cityPostList.filter((element) => element.id === props.EditId); 
-        console.log("Hello"+Editobj);
+        
     }
 
     const [selectedFile, setSelectedFile] = useState(null);
@@ -43,10 +50,11 @@ const PostInput = (props) =>{
       }
     };
     
-     const handlePublish =(e)=>{
+     const handlePublish = async(e)=>{
         e.preventDefault();
         if(selectedFile!==null && postTitile.trim().length>0 && citySummaryText.trim().length>0)
         {
+            props.setShowInputModal(!props.showInputModal);
             if(props.EditId!==null)
             {
                 const index = props.cityPostList.findIndex((element)=> element.id === props.EditId);
@@ -62,16 +70,30 @@ const PostInput = (props) =>{
                 props.setCityPostList(ChangeCityList);
                 props.setEditId(null);
             }
-           else {   
-                props.setCityPostList([...props.cityPostList ,{
-                    id:crypto.randomUUID(),
-                    SubTitle:postTitile,
-                    FileUrl : URL.createObjectURL(selectedFile),
-                    AboutCityText: citySummaryText,
-                    CreatingDate: `${day} ${monthNames[month]}`               
-                }]);
+           else {
+
+
+                    const newPostItem ={
+                        id:crypto.randomUUID(),
+                        SubTitle:postTitile,
+                        FileUrl : URL.createObjectURL(selectedFile),
+                        AboutCityText: citySummaryText,
+                        CreatingDate: `${day} ${monthNames[month]}`               
+                    }
+
+                    props.setCityPostList([...props.cityPostList ,newPostItem]);
+                    const parentDocRef = doc(db, `Cities`,CityID); // Replace with your actual collection and document names
+
+                    const subCollectionRef = collection(parentDocRef, 'VisitPlaces'); // Replace with your actual subcollection name
+                    const PostDocRef = doc(subCollectionRef, `${newPostItem.id}`);
+                    try{
+                        await setDoc(PostDocRef, newPostItem);
+                    }catch(error){
+                        console.log(error);
+                    }
+
             }
-            props.setShowInputModal(!props.showInputModal);
+            // props.setShowInputModal(!props.showInputModal);
         }
         else{
             alert("Please Enter the value into the fields");

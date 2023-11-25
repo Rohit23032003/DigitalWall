@@ -6,16 +6,63 @@ import PostInput from './PostInput'
 import PostCard from "./PostCard";
 import './CityApp.css'
 
+import db from '../firebaseconfig'; 
+
+import { doc, collection, addDoc, getDocs } from 'firebase/firestore';
+import { useLoaderData } from "react-router-dom";
+import { useParams } from "react-router-dom";
+
+
+const FetchCityPost = async (searchId) => {
+    const parentDocRef = doc(db, `Cities/${searchId}`); // Replace with your actual collection and document names
+    const subCollectionRef = collection(parentDocRef, 'VisitPlaces');
+    let data = [];
+
+    try {
+        const subCollectionSnapshot = await getDocs(subCollectionRef);
+        console.log(subCollectionSnapshot);
+        subCollectionSnapshot.forEach((doc) => {
+        const documentData = {
+            id: doc.id,
+            ...doc.data(),
+          };
+          data.push(documentData);
+    });
+    } catch (error) {
+      console.error('Error getting documents from subcollection: ', error);
+    }
+    return data;
+  };
+  
+
+
+
+
 const CityApp=()=>{
+    const { CityID } = useParams();
+    let searchId = CityID.slice(1);
+    
+  
+    
     const [cityPostList , setCityPostList] = useState([]);
     const [showInputModal , setShowInputModal] = useState(false);
-    const [searchedQuery , setSearchedQuery] = useState("");
+    const [searchedQuery , setSearchedQuery] = useState(null);
     const [copyCityPostList , setCityCopyPostList] = useState(cityPostList);
     const [EditId , setEditId] = useState(null);
+    
+    useEffect(() => {
+        const fetchData = async () => {
+          const data = await FetchCityPost(searchId);
+          setCityPostList(data);
+        };
+    
+        fetchData();
+
+      }, [searchId]);
 
 
     useEffect(()=>{
-          if(searchedQuery.length>0)
+          if(searchedQuery!==null)
           {
                 setCityCopyPostList(
                     cityPostList.filter(
@@ -72,4 +119,7 @@ const CityApp=()=>{
     )
 }
 
-export default CityApp ;
+
+
+
+export  {CityApp , FetchCityPost};

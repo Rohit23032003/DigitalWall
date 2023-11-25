@@ -2,6 +2,7 @@ import './Boards.css'
 import BoardItem from './BoardItem';
 import EmptyFolder from './EmptyFolder';
 import { useEffect, useState } from 'react';
+
 const Boards=(props)=>{
 
     const [copyBoardList , setCopyBoardList] = useState([]);
