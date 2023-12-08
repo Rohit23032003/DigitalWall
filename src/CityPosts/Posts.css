@@ -7,10 +7,11 @@
     /* background:  #EBFCFF; */
 }
 
-.Btn{
+#Btn{
     display: flex;
-    width: 11.75rem;
+    min-width: 11.75rem;
     height: 2.5rem;
+    max-width: fit-content;
     padding: 0.8125rem 1rem;
     justify-content: center;
     align-items: center;

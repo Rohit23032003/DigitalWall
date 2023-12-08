@@ -118,7 +118,7 @@ const PostInput = (props) =>{
         <div className="modal-containerPost">
             <div className="modal-boxPost">
                 <div className='Text-Cancel'>
-                    <p id='TexttoCreate'>Create a post</p>
+                    <p id='TexttoCreate'>{props.EditId!==null?`Update`:`Create`} a post</p>
                     <img src={CancelIcon} alt='' style={{cursor:"pointer"}}
                         onClick={() =>{ 
                             props.setShowInputModal(!props.showInputModal);
@@ -153,7 +153,7 @@ const PostInput = (props) =>{
                     onChange={(e)=>setCitySummaryText(e.target.value.trim())}
                     value={citySummaryText}
                 />
-                <button id='CreateBoardbtnPost' onClick={handlePublish}>{props.EditId!==null?`Edit`:`Publish`}</button>
+                <button id='CreateBoardbtnPost' onClick={handlePublish}>{props.EditId!==null?`Update`:`Publish`}</button>
             </div>
         </div>
     );

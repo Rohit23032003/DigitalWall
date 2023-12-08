@@ -143,9 +143,10 @@
 
 #CreateBoardbtnPost{
     display: flex;
-    width: 7.875rem;
+    min-width: 7.875rem;
     /* position: relative; */
     height: 2.5rem;
+    max-width: fit-content;
     padding: 0.8125rem 1rem;
     justify-content: center;
     align-items: center;
