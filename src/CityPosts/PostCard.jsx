@@ -12,6 +12,7 @@ import { doc, collection, updateDoc } from 'firebase/firestore';
 import {db } from '../firebaseconfig';
 import { useParams } from 'react-router-dom';
 
+
 const PostCard=(props)=>{
     const [readObj , setReadObj]= useState(props.element);
 
@@ -92,7 +93,9 @@ const PostCard=(props)=>{
             <div id="SaperatedLineCard"></div>
             <div id='LikesTextIcon'>
                  <img src={likes>0?RedHeart:EmptyHeartIcon} alt='HeartIcon' 
-                 onClick={handleLikes}/>
+                  onClick={handleLikes}
+                  style={{cursor:'pointer'}}
+                  />
                 <span>{likes}</span>
             </div>
         </div>

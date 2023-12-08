@@ -6,11 +6,56 @@ import BookMarkIcon from '../imageFolder/BookmarkOutlined.png';
 import BookMarkedIcon from '../imageFolder/BookMarked.png';
 import {NavLink} from 'react-router-dom'
 
+import { doc, collection, setDoc, getDoc } from 'firebase/firestore';
+import {db } from '../firebaseconfig';
+import { useParams } from 'react-router-dom';
 
-import { useState } from 'react';
+// import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+
+import { useState , useEffect} from 'react';
 
 const CityNavbar = (props) => {
-    const [icon , setIcon] = useState(false);
+    const [icon, setIcon] = useState(false);
+    const { CityID } = useParams();
+    const cityIdFromParams = CityID.slice(1);
+  
+    useEffect(() => {
+      const fetchData = async () => {
+        const parentDocRef = doc(db, 'Cities', cityIdFromParams);
+        const subCollectionRef = collection(parentDocRef, 'BookMarked');
+        const PostDocRef = doc(subCollectionRef, cityIdFromParams);
+  
+        try {
+          const docSnap = await getDoc(PostDocRef);
+          if (docSnap.exists()) {
+            const data = docSnap.data();
+            if (data !== undefined && data !== null) {
+              setIcon(data); // Assuming data is a boolean
+            }
+          }
+        } catch (error) {
+          console.error('Error fetching document:', error);
+        }
+      };
+      fetchData();
+    }, [cityIdFromParams]);
+  
+    const handleOnClick = async (e) => {
+      e.stopPropagation();
+      setIcon((prevIcon) => !prevIcon); // Toggle the icon state
+  
+      const parentDocRef = doc(db, 'Cities', cityIdFromParams);
+      const subCollectionRef = collection(parentDocRef, 'BookMarked');
+      const PostDocRef = doc(subCollectionRef, cityIdFromParams);
+  
+      try {
+        await setDoc(PostDocRef, { icon: !icon }); // Assuming icon is a boolean
+        console.log("created ");
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
 
     return (
         <div className="CityNav">
@@ -35,7 +80,9 @@ const CityNavbar = (props) => {
                         </div>
                     <div id='saperate'></div>  
                         <img src={icon===false?BookMarkIcon:BookMarkedIcon} alt='BookMark' 
-                    onClick={()=> setIcon(!icon)}
+                    onClick={
+                        handleOnClick
+                    }
                         id='BookMarkIcon'
                     />        
             </div>

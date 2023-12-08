@@ -9,7 +9,7 @@ const BoardItem = (props) => {
     const navigate = useNavigate();
 
     const handleNavigateClick=()=>{
-        navigate(`/about/:${props.element.id}`);
+        navigate(`/about/:${props.element.id}`,{replace:true});
     }
 
     const handleEditDeleteShow=(e)=>{

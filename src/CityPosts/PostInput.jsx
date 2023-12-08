@@ -153,7 +153,7 @@ const PostInput = (props) =>{
                     onChange={(e)=>setCitySummaryText(e.target.value.trim())}
                     value={citySummaryText}
                 />
-                <button id='CreateBoardbtnPost' onClick={handlePublish}>Publish</button>
+                <button id='CreateBoardbtnPost' onClick={handlePublish}>{props.EditId!==null?`Edit`:`Publish`}</button>
             </div>
         </div>
     );

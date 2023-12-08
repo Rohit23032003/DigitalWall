@@ -104,7 +104,7 @@ const BoardInput = (props) => {
                     <div id='Color3' onClick={() => handleColorClick('#FFAEC0')} className={selectedColor === '#FFAEC0' ? 'selected' : ''}></div>
                     <div id='Color4' onClick={() => handleColorClick('#FC6')}  className =  {selectedColor === '#FC6' ? 'selected' : ''}></div>
                 </div>
-                    <button id='CreateBoardbtn' onClick={handleSubmit}>Create board</button>
+                    <button id='CreateBoardbtn' onClick={handleSubmit}>{props.isEditID!==null?`Edit`:`Create board`}</button>
             </div>
         </div>
     );
