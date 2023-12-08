@@ -10,7 +10,6 @@ import { doc, collection, setDoc, getDoc } from 'firebase/firestore';
 import {db } from '../firebaseconfig';
 import { useParams } from 'react-router-dom';
 
-// import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 import { useState , useEffect} from 'react';
 
