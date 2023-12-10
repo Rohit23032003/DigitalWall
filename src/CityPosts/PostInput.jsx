@@ -130,7 +130,7 @@ const PostInput = (props) =>{
                 <div id='Subject'>Subject</div>
                 <input type='text' placeholder='Galápagos Islands, Ecuador' 
                 id='InputFieldPost'
-                    onChange={(e)=>{setPostTitile(e.target.value.trim())}}
+                    onChange={(e)=>{setPostTitile(e.target.value)}}
                     value={postTitile}    
 
                 />
@@ -150,7 +150,7 @@ const PostInput = (props) =>{
                 <div id='SaperatedLine'></div>
                 <div id='inputFieldTextHeading'>What’s on your mind?</div>
                 <input id='InputFieldPost'placeholder='Type here'
-                    onChange={(e)=>setCitySummaryText(e.target.value.trim())}
+                    onChange={(e)=>setCitySummaryText(e.target.value)}
                     value={citySummaryText}
                 />
                 <button id='CreateBoardbtnPost' onClick={handlePublish}>{props.EditId!==null?`Update`:`Publish`}</button>
