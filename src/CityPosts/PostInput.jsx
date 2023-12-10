@@ -88,7 +88,7 @@ const PostInput = (props) =>{
                 props.setEditId(null);
             }
            else{
-                    const newPostItem ={
+                    const newPostItem = {
                         id:crypto.randomUUID(),
                         SubTitle:postTitile,
                         FileUrl : downloadURL,
