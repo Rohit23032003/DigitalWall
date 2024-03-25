@@ -38,6 +38,7 @@ function App() {
   );
 }
 
+
 const FetchCities=async ()=>{
 
   const citiesCollectionRef = collection(db, 'Cities'); // Replace 'Cities' with your collection name

@@ -11,7 +11,7 @@ import {FetchCities , App} from './App';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Layout/>}>
-      <Route path='' element={<App/>} loader={FetchCities} />
+      <Route path='' element={<App/>} loader={FetchCities}/>
       <Route path='about/:CityID' element={<CityApp/>}/>
     </Route>
   )
@@ -24,4 +24,3 @@ root.render(
   <RouterProvider router={router}/>
   </React.StrictMode>
 );
-
