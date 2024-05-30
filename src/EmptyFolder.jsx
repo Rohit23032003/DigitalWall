@@ -1,6 +1,6 @@
 import './EmptyFolder.css';
 import image from './imageFolder/JournalEmptyIllo.png';
-
+// import image from './imageFolder/empty-folder.png';
 const EmptyFolder=()=>{
     return (
         <div id='EmptyFolderContent'>
